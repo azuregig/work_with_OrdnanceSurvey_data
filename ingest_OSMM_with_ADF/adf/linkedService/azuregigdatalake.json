@@ -1,12 +1,19 @@
 {
 	"name": "azuregigdatalake",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobFS",
 		"typeProperties": {
 			"url": "https://azuregigdatalake.dfs.core.windows.net",
-			"encryptedCredential": ""
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureGIG_kv",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "azuregigdatalake-pk"
+			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }

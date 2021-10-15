@@ -1,0 +1,12 @@
+{
+	"name": "azuregigdatalake",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://azuregigdatalake.dfs.core.windows.net",
+			"encryptedCredential": ""
+		}
+	}
+}

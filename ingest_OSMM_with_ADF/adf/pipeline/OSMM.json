@@ -218,7 +218,7 @@
 			}
 		},
 		"folder": {
-			"name": "geospatial_imports"
+			"name": "ingest/OSMM"
 		},
 		"annotations": []
 	}

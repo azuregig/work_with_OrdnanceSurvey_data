@@ -1,10 +1,6 @@
 {
 	"name": "OSMM_bronze_gml_gz",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "azuregigdatalake",
-			"type": "LinkedServiceReference"
-		},
 		"parameters": {
 			"package_id": {
 				"type": "string"

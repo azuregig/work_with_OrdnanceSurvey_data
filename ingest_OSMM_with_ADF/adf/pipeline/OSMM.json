@@ -1,0 +1,225 @@
+{
+	"name": "OSMM",
+	"properties": {
+		"activities": [
+			{
+				"name": "set download urls array",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Lookup Package Index",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "download_urls",
+					"value": {
+						"value": "@activity('Lookup Package Index').output.firstRow.downloads",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Lookup Package Index",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"additionalHeaders": {
+								"value": "@{concat('key:',pipeline().parameters.api_key)}",
+								"type": "Expression"
+							},
+							"requestTimeout": ""
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "PackageIndex",
+						"type": "DatasetReference",
+						"parameters": {
+							"package_id": {
+								"value": "@pipeline().parameters.data_package",
+								"type": "Expression"
+							},
+							"package_version": {
+								"value": "@pipeline().parameters.data_package_version",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "ForEachDownload",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Sample download url",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('download_urls_sample')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "CopyGZFile",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "@{concat('key:',pipeline().parameters.api_key)}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "OSMM_source_file",
+									"type": "DatasetReference",
+									"parameters": {
+										"package_id": {
+											"value": "@pipeline().parameters.data_package",
+											"type": "Expression"
+										},
+										"package_version": {
+											"value": "@pipeline().parameters.data_package_version",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@item().fileName",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "OSMM_bronze_gml_gz",
+									"type": "DatasetReference",
+									"parameters": {
+										"package_id": {
+											"value": "@pipeline().parameters.data_package",
+											"type": "Expression"
+										},
+										"package_version": {
+											"value": "@pipeline().parameters.data_package_version",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@item().fileName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Sample download url",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "set download urls array",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "download_urls_sample",
+					"value": {
+						"value": "@take(variables('download_urls'),2)",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"api_key": {
+				"type": "string",
+				"defaultValue": "\"\""
+			},
+			"data_package": {
+				"type": "string",
+				"defaultValue": "0040154231"
+			},
+			"data_package_version": {
+				"type": "string",
+				"defaultValue": "5500114"
+			}
+		},
+		"variables": {
+			"package_info": {
+				"type": "String"
+			},
+			"download_urls": {
+				"type": "Array"
+			},
+			"download_urls_sample": {
+				"type": "Array"
+			},
+			"filename": {
+				"type": "String"
+			},
+			"url": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "geospatial_imports"
+		},
+		"annotations": []
+	}
+}

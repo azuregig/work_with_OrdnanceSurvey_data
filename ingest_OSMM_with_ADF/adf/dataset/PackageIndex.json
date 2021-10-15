@@ -1,0 +1,32 @@
+{
+	"name": "PackageIndex",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "OrdnanceSurveyDataHub",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"package_id": {
+				"type": "string"
+			},
+			"package_version": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "geodata/OSMM"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@concat('downloads/v1/dataPackages/',dataset().package_id,'/versions/',dataset().package_version)",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}

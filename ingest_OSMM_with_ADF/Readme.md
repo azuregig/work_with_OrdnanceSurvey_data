@@ -48,7 +48,7 @@ Open the Azure Data Factory portal, and refresh, then then switch to the new bra
 You can either follow Option 1 above, and allow all existing content of your data factory to be imported into your forked repo. 
 > :warning: Make sure to remove any hard coded credentials in your existing content before doing this. 
 
-Alternatively, manually create the assets described below, and use the code view (button `{}`, top right corner of the authoring window) to replicate the examples from this repo. 
+Alternatively, manually create stubs for the assets described below in your Azure Data Factory UI, and use the code view (button `{}`, top right corner of the authoring window) to replicate the configuration from this sample - you can find the code view in the [`./adf` folder](./adf). 
 
 ### **Configure Linked Services**
 Navigate to the `Manage` tab within Data Factory, and delete the `azuregigdatalake` linked service, and replace it with an entry linking your own storage account. ([Link a blob storage account](https://docs.microsoft.com/en-us/azure/data-factory/connector-azure-blob-storage?tabs=data-factory#create-an-azure-blob-storage-linked-service-using-ui) or [Link an Azure Data lake Storage Gen 2](https://docs.microsoft.com/en-us/azure/data-factory/connector-azure-data-lake-storage?tabs=data-factory#create-an-azure-data-lake-storage-gen2-linked-service-using-ui))

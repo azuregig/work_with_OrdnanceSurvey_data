@@ -4,7 +4,7 @@
 		"description": "unzips an individual gzipped gml file into a separate location in bronze ",
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Copy and unzip",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {

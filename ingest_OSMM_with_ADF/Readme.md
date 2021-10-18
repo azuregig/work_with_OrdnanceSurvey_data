@@ -14,7 +14,9 @@ This example relates to downloading `DataPackages`, which represent custom datas
 ### **Pre-requisites**
 
 1. request a DataPackage via the PSGA, and have the data package id and data package version number to hand, as well as your API key for the OS data hub.
-2. An [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create) (this can optionally have [hierarchical namespace enabled](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace) to make it an Azure Datalake gen2) and an [Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal) must be available. If provisioning a new Data Factory, chose to skip setting up the git integration for now. 
+2. Provision or identify the following resources in your Azure subscription:
+   - [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create) (this can optionally have [hierarchical namespace enabled](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace) to make it an Azure Datalake gen2) 
+   - An [Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal) must be available. If provisioning a new Data Factory, chose to skip setting up the git integration for now. 
 
 ### **Setup**
 - [Option 1](#setup-option-1-new-azure-data-factory): New Azure Data Factory
@@ -23,7 +25,6 @@ This example relates to downloading `DataPackages`, which represent custom datas
 
 #### **Setup Option 1**: New Azure Data Factory
 Start by forking this repo into your own git account.
-
 
 From the ADF portal (https://adf.azure.com), [configure git integration](https://docs.microsoft.com/en-us/azure/data-factory/source-control#configuration-method-3-management-hub) with the following parameters:
 - Repository Type: `GitHub`

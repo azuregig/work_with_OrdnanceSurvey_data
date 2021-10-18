@@ -1,0 +1,102 @@
+{
+	"name": "unzip",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "OSMM_bronze_gml_gz",
+						"type": "DatasetReference",
+						"parameters": {
+							"package_id": {
+								"value": "@pipeline().parameters.data_package_id",
+								"type": "Expression"
+							},
+							"package_version": {
+								"value": "@pipeline().parameters.data_package_version",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "@pipeline().parameters.filename",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OSMM_bronze_gml",
+						"type": "DatasetReference",
+						"parameters": {
+							"package_id": {
+								"value": "@pipeline().parameters.data_package_id",
+								"type": "Expression"
+							},
+							"package_version": {
+								"value": "@pipeline().parameters.data_package_version",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "@concat(split(pipeline().parameters.filename,'.')[0],'.gml')",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"data_package_id": {
+				"type": "string",
+				"defaultValue": "0040154231"
+			},
+			"data_package_version": {
+				"type": "string",
+				"defaultValue": "5500114"
+			},
+			"filename": {
+				"type": "string",
+				"defaultValue": "5436275-NF8775.gz"
+			}
+		},
+		"variables": {
+			"package_": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "ingest/OSMM"
+		},
+		"annotations": []
+	}
+}

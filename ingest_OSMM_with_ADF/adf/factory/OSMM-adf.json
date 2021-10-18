@@ -1,9 +1,9 @@
 {
-	"name": "OSMM",
+	"name": "OSMM-adf",
 	"location": "uksouth",
 	"identity": {
 		"type": "SystemAssigned",
-		"principalId": "6d5ff09e-89a5-480a-8cdd-ed7d68ec25d3",
+		"principalId": "e71df849-a656-4102-b8b0-6cbba1fb228d",
 		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
 	}
 }

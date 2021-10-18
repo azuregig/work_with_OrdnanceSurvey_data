@@ -52,8 +52,12 @@ Alternatively, manually create the assets described below, and use the code view
 ### **Configure Linked Services**
 Navigate to the `Manage` tab within Data Factory, and delete the `azuregigdatalake` linked service, and replace it with an entry linking your own storage account. ([Link a blob storage account](https://docs.microsoft.com/en-us/azure/data-factory/connector-azure-blob-storage?tabs=data-factory#create-an-azure-blob-storage-linked-service-using-ui) or [Link an Azure Data lake Storage Gen 2](https://docs.microsoft.com/en-us/azure/data-factory/connector-azure-data-lake-storage?tabs=data-factory#create-an-azure-data-lake-storage-gen2-linked-service-using-ui))
 
-Then find the dataset representing the target location for the ingest (see Dataset 3 under Assets below) and ensure it uses your new linked service. Ensure you create a `bronze` container or equivalent in your datalake.
+Then find the dataset representing the target location for the ingest (see Dataset 3 under Assets below) and ensure it uses your new linked service. Ensure you create a `bronze` container or equivalent destination in your datalake, and update the path in the dataset accordingly.
 
+### **Execute the Pipeline**
+:tada: You're ready to run the pipeline: click the debug button at the top of the pipeline canvas to [execute a debug run](https://docs.microsoft.com/en-us/azure/data-factory/iterative-development-debugging?tabs=data-factory#monitoring-debug-runs). A panel will pop up asking for the Data Package id, the Data Package version, and your api key for the OS Data Hub.
+
+> In this sample, the ingest is limited to 10 gzipped archives specified in the data package. Review the detail below to adapt this to your needs. 
 
 ### **About the assets defined by this sample**
 

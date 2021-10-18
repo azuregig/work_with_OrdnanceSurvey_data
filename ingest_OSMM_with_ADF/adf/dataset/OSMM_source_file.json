@@ -17,7 +17,7 @@
 			}
 		},
 		"folder": {
-			"name": "geodata/OSMM"
+			"name": "ingest/OSMM"
 		},
 		"annotations": [],
 		"type": "Binary",

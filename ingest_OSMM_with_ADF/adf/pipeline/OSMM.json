@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "set download urls array",
+				"name": "set array download_urls",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
@@ -71,7 +71,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Sample download url",
+						"activity": "set array download_urls_sample",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -83,7 +83,8 @@
 						"value": "@variables('download_urls_sample')",
 						"type": "Expression"
 					},
-					"isSequential": true,
+					"isSequential": false,
+					"batchCount": 5,
 					"activities": [
 						{
 							"name": "CopyGZFile",
@@ -161,16 +162,32 @@
 									}
 								}
 							]
+						},
+						{
+							"name": "Wait1",
+							"type": "Wait",
+							"dependsOn": [
+								{
+									"activity": "CopyGZFile",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 1
+							}
 						}
 					]
 				}
 			},
 			{
-				"name": "Sample download url",
+				"name": "set array download_urls_sample",
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "set download urls array",
+						"activity": "set array download_urls",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -180,7 +197,7 @@
 				"typeProperties": {
 					"variableName": "download_urls_sample",
 					"value": {
-						"value": "@take(variables('download_urls'),2)",
+						"value": "@take(variables('download_urls'),10)",
 						"type": "Expression"
 					}
 				}
@@ -201,9 +218,6 @@
 			}
 		},
 		"variables": {
-			"package_info": {
-				"type": "String"
-			},
 			"download_urls": {
 				"type": "Array"
 			},
@@ -218,7 +232,7 @@
 			}
 		},
 		"folder": {
-			"name": "geospatial_imports"
+			"name": "ingest/OSMM"
 		},
 		"annotations": []
 	}

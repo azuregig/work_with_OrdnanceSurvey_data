@@ -2,7 +2,7 @@
 	"name": "OSMM_bronze_gml_gz",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "datalakeexplore",
+			"referenceName": "azuregigdatalake",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -17,7 +17,7 @@
 			}
 		},
 		"folder": {
-			"name": "geodata/OSMM"
+			"name": "ingest/OSMM"
 		},
 		"annotations": [],
 		"type": "Binary",

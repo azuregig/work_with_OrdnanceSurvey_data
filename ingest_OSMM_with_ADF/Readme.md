@@ -105,7 +105,7 @@ At pipeline level, we configure the following parameters:
 
 and the following variables, all of which will be used in the activities outlined below.
 
-<p align="center"><img src=img/pipeline_variables.png width=500/></p>
+<p align="center"><img src=img/Pipeline_variables.png width=500/></p>
 
 
 

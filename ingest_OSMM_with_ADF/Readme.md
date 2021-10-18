@@ -17,8 +17,13 @@ This example relates to downloading `DataPackages`, which represent custom datas
 2. An [Azure Storage Account](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create) (this can optionally have [hierarchical namespace enabled](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace) to make it an Azure Datalake gen2) and an [Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal) must be available. If provisioning a new Data Factory, chose to skip setting up the git integration for now. 
 
 ### **Setup**
+- [Option 1](#setup-option-1-new-azure-data-factory): New Azure Data Factory
+- [Option 2](#setup-option-2-existing-azure-data-factory-with-existing-git-integration): Existing Azure Data Factory, with existing git integration
+- [Option 3](#setup-option-3-existing-azure-data-factory-not-integrated-with-source-control): Existing Azure Data Factory, not integrated with source control
+
 #### **Setup Option 1**: New Azure Data Factory
 Start by forking this repo into your own git account.
+
 
 From the ADF portal (https://adf.azure.com), [configure git integration](https://docs.microsoft.com/en-us/azure/data-factory/source-control#configuration-method-3-management-hub) with the following parameters:
 - Repository Type: `GitHub`

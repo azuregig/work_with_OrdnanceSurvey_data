@@ -234,3 +234,15 @@ When triggering the pipeline, for example with the `Debug` button, the api_key h
 Here is an example of a throttled run, copying batches of 5 files simultaenously with a wait time of 5 seconds.
 
 <p align="center"><img src=img/debug_run_throttled.png width=650/></p>
+
+Hover over an individual copy activity execution to reveal the <img src=img/glasses.png width=20 /> button to show details relating to the data transfer:
+
+<p align="center"><img src=img/details_button.png width=650/></p>
+
+<p align="center"><img src=img/file_copy_details.png width=650/></p>
+
+The resulting files can be reviewed in the data lake, for example via the storage browser integrated into the Azure Portal.
+
+<p align="center"><img src=img/lake.png width=650/></p>
+
+> **Bonus Tip**: Setting the compression type of the target data set (see Dataset 3 under [Assets](#assets) above) to `None` instead of to `gzip (.gz)` would unzip the ingested archives on the fly.

@@ -1,9 +1,12 @@
+> The json files in the [./adf](./adf) subfolder are created by the Azure Data Factory github integration, and are all that is required to recreate this example, either by linking your Azure Data Factory to a fork of this repo, or by using their content to update the code view (`{}` button) of your own pipeline, linked services, and dataset assets in your Azure Data Factory. 
+
 # Importing Ordnance Survey MasterMap data with Azure Data Factory
 
 Implementations
 - [Using DataPackages via the OS Download API](#using-datapackages-via-the-os-download-api)
 
 ## Using DataPackages via the OS Download API
+
 This example relates to downloading `DataPackages`, which represent custom datasets served on request to members of the Public Sector Geospatial Agreement (PSGA). 
 
 - [About the OS Download API](https://osdatahub.os.uk/docs/downloads/overview)

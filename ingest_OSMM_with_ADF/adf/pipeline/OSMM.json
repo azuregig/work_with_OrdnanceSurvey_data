@@ -197,7 +197,7 @@
 				"typeProperties": {
 					"variableName": "download_urls_sample",
 					"value": {
-						"value": "@take(variables('download_urls'),10)",
+						"value": "@take(variables('download_urls'),2)",
 						"type": "Expression"
 					}
 				}

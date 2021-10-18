@@ -29,9 +29,6 @@
 					"type": "Expression"
 				},
 				"fileSystem": "bronze"
-			},
-			"compression": {
-				"type": "gzip"
 			}
 		}
 	}

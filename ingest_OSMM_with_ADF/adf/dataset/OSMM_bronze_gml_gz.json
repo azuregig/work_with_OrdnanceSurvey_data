@@ -24,11 +24,18 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().filename",
+					"type": "Expression"
+				},
 				"folderPath": {
 					"value": "@concat('gz/OSMM/v1/dataPackages/',dataset().package_id,'/version/',dataset().package_version)",
 					"type": "Expression"
 				},
 				"fileSystem": "bronze"
+			},
+			"compression": {
+				"type": "gzip"
 			}
 		}
 	}

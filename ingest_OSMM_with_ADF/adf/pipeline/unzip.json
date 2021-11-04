@@ -37,12 +37,6 @@
 				"inputs": [
 					{
 						"referenceName": "OSMM_bronze_gml_gz_folder",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "OSMM_bronze_gml",
 						"type": "DatasetReference",
 						"parameters": {
 							"package_id": {
@@ -52,9 +46,21 @@
 							"package_version": {
 								"value": "@pipeline().parameters.data_package_version",
 								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "OSMM_bronze_gml_folder",
+						"type": "DatasetReference",
+						"parameters": {
+							"package_id": {
+								"value": "@pipeline().parameters.data_package_id",
+								"type": "Expression"
 							},
-							"filename": {
-								"value": "@concat(split(pipeline().parameters.filename,'.')[0],'.gml')",
+							"package_version": {
+								"value": "@pipeline().parameters.data_package_version",
 								"type": "Expression"
 							}
 						}
@@ -70,15 +76,6 @@
 			"data_package_version": {
 				"type": "string",
 				"defaultValue": "5500114"
-			},
-			"filename": {
-				"type": "string",
-				"defaultValue": "5436275-NF8775.gz"
-			}
-		},
-		"variables": {
-			"package_": {
-				"type": "String"
 			}
 		},
 		"folder": {

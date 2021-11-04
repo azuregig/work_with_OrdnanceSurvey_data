@@ -36,22 +36,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "OSMM_bronze_gml_gz",
-						"type": "DatasetReference",
-						"parameters": {
-							"package_id": {
-								"value": "@pipeline().parameters.data_package_id",
-								"type": "Expression"
-							},
-							"package_version": {
-								"value": "@pipeline().parameters.data_package_version",
-								"type": "Expression"
-							},
-							"filename": {
-								"value": "@pipeline().parameters.filename",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "OSMM_bronze_gml_gz_folder",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [

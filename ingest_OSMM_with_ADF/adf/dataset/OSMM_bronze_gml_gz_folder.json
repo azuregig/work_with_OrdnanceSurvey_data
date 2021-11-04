@@ -1,0 +1,35 @@
+{
+	"name": "OSMM_bronze_gml_gz_folder",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuregigdatalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"package_id": {
+				"type": "string"
+			},
+			"package_version": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ingest/OSMM_folder_level"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat('gz/OSMM/v1/dataPackages/',dataset().package_id,'/version/',dataset().package_version)",
+					"type": "Expression"
+				},
+				"fileSystem": "bronze"
+			},
+			"compression": {
+				"type": "gzip"
+			}
+		}
+	}
+}

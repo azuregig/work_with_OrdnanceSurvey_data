@@ -245,4 +245,4 @@ The resulting files can be reviewed in the data lake, for example via the storag
 
 <p align="center"><img src=img/lake.png width=650/></p>
 
-> **Bonus Tip**: Setting the compression type of the target data set (see Dataset 3 under [Assets](#assets) above) to `None` instead of to `gzip (.gz)` would unzip the ingested archives on the fly. In that case, ensure the parameterised filepath in the target dataset is updated to reflect the correct file extension.
+> **Bonus Tip**: Setting the compression type of the target data set (see Dataset 3 under [Assets](#assets) above) to `None` instead of to `gzip (.gz)` would unzip the ingested archives on the fly. In that case, ensure the parameterised filepath in the target dataset is updated (using the @replace function), as these archives otherwise unzip to a file of the same name but without an extension.

@@ -24,7 +24,8 @@
 						"formatSettings": {
 							"type": "BinaryReadSettings",
 							"compressionProperties": {
-								"type": "ZipDeflateReadSettings"
+								"type": "ZipDeflateReadSettings",
+								"preserveZipFileNameAsFolder": false
 							}
 						}
 					},
@@ -94,6 +95,10 @@
 			},
 			"filetype": {
 				"type": "string"
+			},
+			"keep_zip_name": {
+				"type": "bool",
+				"defaultValue": true
 			}
 		},
 		"folder": {

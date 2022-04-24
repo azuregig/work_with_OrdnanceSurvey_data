@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "unzip_zip",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "Unzip_to_bronze",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -15,8 +15,71 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings",
+							"compressionProperties": {
+								"type": "ZipDeflateReadSettings"
+							}
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
 					"enableStaging": false
-				}
+				},
+				"inputs": [
+					{
+						"referenceName": "landed_zip",
+						"type": "DatasetReference",
+						"parameters": {
+							"provider": {
+								"value": "@pipeline().parameters.provider",
+								"type": "Expression"
+							},
+							"dataset": {
+								"value": "@pipeline().parameters.dataset",
+								"type": "Expression"
+							},
+							"version": {
+								"value": "@pipeline().parameters.version",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "bronze_unzipped",
+						"type": "DatasetReference",
+						"parameters": {
+							"filetype": {
+								"value": "@pipeline().parameters.filetype",
+								"type": "Expression"
+							},
+							"provider": {
+								"value": "@pipeline().parameters.provider",
+								"type": "Expression"
+							},
+							"dataset": {
+								"value": "@pipeline().parameters.dataset",
+								"type": "Expression"
+							},
+							"version": {
+								"value": "@pipeline().parameters.version",
+								"type": "Expression"
+							}
+						}
+					}
+				]
 			}
 		],
 		"parameters": {
@@ -27,6 +90,9 @@
 				"type": "string"
 			},
 			"version": {
+				"type": "string"
+			},
+			"filetype": {
 				"type": "string"
 			}
 		},

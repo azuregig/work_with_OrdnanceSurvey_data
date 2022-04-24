@@ -29,6 +29,9 @@
 					"type": "Expression"
 				},
 				"container": "landing"
+			},
+			"compression": {
+				"type": "ZipDeflate"
 			}
 		}
 	}

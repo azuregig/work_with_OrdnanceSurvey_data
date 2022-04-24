@@ -1,0 +1,38 @@
+{
+	"name": "bronze_unzipped",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuregigdatalake",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filetype": {
+				"type": "string"
+			},
+			"provider": {
+				"type": "string"
+			},
+			"dataset": {
+				"type": "string"
+			},
+			"version": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "generic/bronze"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@concat(dataset().filetype,'/',dataset().provider,'/',dataset().dataset,'/',dataset().version)",
+					"type": "Expression"
+				},
+				"fileSystem": "bronze"
+			}
+		}
+	}
+}

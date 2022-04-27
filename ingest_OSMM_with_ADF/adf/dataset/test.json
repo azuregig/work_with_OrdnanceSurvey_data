@@ -1,0 +1,32 @@
+{
+	"name": "test",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azuregiglanding",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"supplier": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "generic"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": {
+					"value": "@concat(dataset().supplier)",
+					"type": "Expression"
+				},
+				"container": "landing"
+			},
+			"compression": {
+				"type": "ZipDeflate"
+			}
+		}
+	}
+}

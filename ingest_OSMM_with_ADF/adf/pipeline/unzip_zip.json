@@ -25,7 +25,10 @@
 							"type": "BinaryReadSettings",
 							"compressionProperties": {
 								"type": "ZipDeflateReadSettings",
-								"preserveZipFileNameAsFolder": false
+								"preserveZipFileNameAsFolder": {
+									"value": "@pipeline().parameters.keep_zip_name",
+									"type": "Expression"
+								}
 							}
 						}
 					},
